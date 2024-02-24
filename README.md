@@ -1,5 +1,4 @@
-```markdown
-# VideoFeed
+## VideoFeed
 
 Welcome to VideoFeed, a social media platform inspired by TikTok, where users can upload, like, comment, and share short videos.
 
