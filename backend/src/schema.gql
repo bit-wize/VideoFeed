@@ -1,0 +1,112 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Comment {
+  createdAt: DateTime!
+  id: Int!
+  post: PostType!
+  postId: Int!
+  text: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ErrorType {
+  code: String
+  message: String!
+}
+
+type LikeType {
+  id: Int!
+  postId: Int!
+  userId: Int!
+}
+
+input LoginDTO {
+  email: String!
+  password: String!
+}
+
+type LoginResponse {
+  error: ErrorType
+  user: User!
+}
+
+type Mutation {
+  createComment(postId: Float!, text: String!): Comment!
+  createPost(text: String!, video: Upload!): PostType!
+  deleteComment(id: Float!): Comment!
+  deletePost(id: Float!): PostType!
+  like(postId: Float!): LikeType!
+  login(loginInput: LoginDTO!): LoginResponse!
+  logout: String!
+  refreshToken: String!
+  register(registerInput: RegisterDTO!): RegisterResponse!
+  unlike(postId: Float!): LikeType!
+  updatePostShares(id: Float!): PostType!
+  updateProfile(bio: String, fullname: String, image: Upload): User!
+}
+
+type PostDetails {
+  createdAt: DateTime!
+  id: Int!
+  likes: [LikeType!]
+  otherPostIds: [Float!]
+  shares: Float!
+  text: String!
+  user: User!
+  video: String!
+}
+
+type PostType {
+  createdAt: DateTime!
+  id: Int!
+  likes: [LikeType!]
+  shares: Float!
+  text: String!
+  user: User!
+  video: String!
+}
+
+type Query {
+  getAllPosts(skip: Int! = 0, take: Int! = 1): [PostType!]!
+  getAllUsers: [User!]!
+  getCommentsByPost(postId: Float!): [Comment!]!
+  getPost(id: Float!): PostDetails!
+  getPostsByUser(userId: Float!): [PostType!]!
+  getUser(id: Int!): User
+  sayHello: String!
+}
+
+input RegisterDTO {
+  confirmPassword: String!
+  email: String!
+  fullname: String!
+  password: String!
+}
+
+type RegisterResponse {
+  error: ErrorType
+  user: User
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type User {
+  bio: String
+  createdAt: DateTime!
+  email: String!
+  fullname: String!
+  id: Float!
+  image: String
+  password: String!
+  updatedAt: DateTime!
+}
